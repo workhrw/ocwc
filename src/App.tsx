@@ -533,7 +533,9 @@ function NewslettersPage() {
           </article>
 
           <div className="archive-years">
-            {Object.entries(newsletters).map(([year, issues]) => (
+            {Object.entries(newsletters)
+              .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+              .map(([year, issues]) => (
               <section className="archive-year" key={year} aria-labelledby={`year-${year}`}>
                 <h2 id={`year-${year}`}>{year}</h2>
                 <div className="issue-grid">
@@ -546,7 +548,7 @@ function NewslettersPage() {
                   ))}
                 </div>
               </section>
-            ))}
+              ))}
           </div>
           <section className="earlier-archives" aria-labelledby="earlier-archive-title">
             <div>
