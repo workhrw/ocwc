@@ -9,6 +9,11 @@ import {
 } from 'react-router-dom'
 import { classInterests, freeGroups, navigation, newsletterFolderArchives, newsletters, site } from './data'
 
+const newsletterYears = Object.keys(newsletters).sort((yearA, yearB) => Number(yearB) - Number(yearA))
+const latestNewsletterYear = newsletterYears[0]
+const latestNewsletter = newsletters[latestNewsletterYear][0]
+const latestNewsletterLabel = `${latestNewsletter.month} ${latestNewsletterYear}`
+
 type SeoProps = {
   title: string
   description: string
@@ -316,8 +321,8 @@ function HomePage() {
           </div>
           <div className="latest-newsletter-card">
             <span>Latest issue</span>
-            <strong>September 2026</strong>
-            <a href={newsletters['2026'][0].url} target="_blank" rel="noopener noreferrer">Read the newsletter PDF <ArrowIcon /></a>
+            <strong>{latestNewsletterLabel}</strong>
+            <a href={latestNewsletter.url} target="_blank" rel="noopener noreferrer">Read the newsletter PDF <ArrowIcon /></a>
             <Link to="/newsletters">Browse the full archive</Link>
           </div>
         </div>
@@ -526,16 +531,16 @@ function NewslettersPage() {
           <article className="featured-issue">
             <div>
               <p className="eyebrow eyebrow--light">Current issue</p>
-              <h2>September 2026</h2>
+              <h2>{latestNewsletterLabel}</h2>
               <p>The latest news from the Oklahoma City Woodcarvers Club.</p>
             </div>
-            <a className="button button--light" href={newsletters['2026'][0].url} target="_blank" rel="noopener noreferrer">Read current issue <ArrowIcon /></a>
+            <a className="button button--light" href={latestNewsletter.url} target="_blank" rel="noopener noreferrer">Read current issue <ArrowIcon /></a>
           </article>
 
           <div className="archive-years">
-            {Object.entries(newsletters)
-              .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-              .map(([year, issues]) => (
+            {newsletterYears.map((year) => {
+              const issues = newsletters[year]
+              return (
               <section className="archive-year" key={year} aria-labelledby={`year-${year}`}>
                 <h2 id={`year-${year}`}>{year}</h2>
                 <div className="issue-grid">
@@ -548,7 +553,8 @@ function NewslettersPage() {
                   ))}
                 </div>
               </section>
-              ))}
+              )
+            })}
           </div>
           <section className="earlier-archives" aria-labelledby="earlier-archive-title">
             <div>
