@@ -1,0 +1,19 @@
+RewriteEngine On
+DirectoryIndex index.html
+
+# Redirect alternate production hosts to the canonical HTTPS domain.
+RewriteCond %{HTTP_HOST} ^www\.okcarver\.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^(www\.)?okcarver\.org$ [NC]
+RewriteRule ^ https://okcarver.com%{REQUEST_URI} [R=301,L]
+
+# Force HTTPS on the canonical host without affecting local development.
+RewriteCond %{HTTP_HOST} ^okcarver\.com$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://okcarver.com%{REQUEST_URI} [R=301,L]
+
+# Preserve real files and directories, then route application paths to React.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+Options -Indexes
