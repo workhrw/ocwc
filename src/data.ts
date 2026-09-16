@@ -16,11 +16,12 @@ export const site = {
   showApplication2026: 'https://drive.google.com/file/d/1Wb7ttA5HPZqreA8T_cb6jYIt50mjvX4f/view',
   showRules2026: 'https://drive.google.com/file/d/19d8h3ZTeRkEfzExfoW4mp-z5-hL5xISU/view',
   bylawsUrl: 'https://drive.google.com/file/d/12qt_D8R8TBiZk4Sau1j0XexoaXZ2erAb/view',
-  // Replace these values when the public campaign/form URLs are available.
-  zeffyMembershipUrl: '',
+  // Replace these values when the remaining public campaign/form URLs are available.
+  zeffyMembershipUrl: 'https://www.zeffy.com/en-US/ticketing/oklahoma-city-woodcarvers-club-memberships',
   zeffyVendor2027Url: '',
   zeffyVolunteer2027Url: '',
-  emailOctopusSignupUrl: '',
+  emailOctopusFormId: '17a8e89e-b11e-11f1-af2a-518b29e5e663',
+  emailOctopusScriptUrl: 'https://eocampaign1.com/form/17a8e89e-b11e-11f1-af2a-518b29e5e663.js',
 }
 
 export const navigation = [

@@ -647,9 +647,19 @@ p {
   color: #eefaff;
 }
 
-.newsletter-callout .button {
-  flex: 0 0 auto;
-  max-width: 280px;
+.newsletter-signup-form {
+  flex: 0 1 460px;
+  width: min(100%, 460px);
+  min-height: 180px;
+  padding: 1rem;
+  border-radius: 12px;
+  color: var(--ink);
+  background: var(--white);
+}
+
+.newsletter-signup-form .newsletter-form-loading {
+  margin: 0;
+  color: var(--muted);
 }
 
 .visit-section {
@@ -1541,7 +1551,7 @@ p {
     flex-direction: column;
   }
 
-  .newsletter-callout .button {
+  .newsletter-signup-form {
     width: 100%;
   }
 

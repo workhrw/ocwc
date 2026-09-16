@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import {
   Link,
   NavLink,
@@ -226,14 +226,31 @@ function CalendarEmbed({ compact = false }: { compact?: boolean }) {
 }
 
 function NewsletterSignup() {
+  const formContainer = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const container = formContainer.current
+    if (!container) return
+
+    const script = document.createElement('script')
+    script.async = true
+    script.src = site.emailOctopusScriptUrl
+    script.dataset.form = site.emailOctopusFormId
+    container.replaceChildren(script)
+
+    return () => container.replaceChildren()
+  }, [])
+
   return (
-    <section className="newsletter-callout" aria-labelledby="newsletter-signup-title">
+    <section className="newsletter-callout" id="newsletter-signup" aria-labelledby="newsletter-signup-title">
       <div>
         <p className="eyebrow eyebrow--light">Club news, once a month</p>
         <h2 id="newsletter-signup-title">Keep creativity in your inbox</h2>
         <p>Get meeting reminders, class announcements, show information, and the latest OCWC newsletter through EmailOctopus.</p>
       </div>
-      <ExternalAction href={site.emailOctopusSignupUrl} className="button button--light">Sign up for the newsletter</ExternalAction>
+      <div className="newsletter-signup-form" ref={formContainer} aria-label="Email newsletter signup form">
+        <p className="newsletter-form-loading">Loading the signup form…</p>
+      </div>
     </section>
   )
 }
@@ -386,7 +403,7 @@ function ClassesPage() {
               <p>Watch the club calendar and newsletter for the next class announcement. Registration will appear here as soon as details are final.</p>
               <div className="button-row">
                 <Link className="button button--small" to="/membership#calendar">View calendar</Link>
-                <ExternalAction href={site.emailOctopusSignupUrl} className="button button--outline button--small">Get class announcements</ExternalAction>
+                <Link to="/newsletters#newsletter-signup" className="button button--outline button--small">Get class announcements</Link>
               </div>
             </div>
           </div>
