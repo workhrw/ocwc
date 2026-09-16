@@ -369,20 +369,32 @@ function ClassesPage() {
   return (
     <>
       <Seo title="Woodcarving Groups and Classes" description="Find free weekly carving groups and paid instructor-led woodcarving classes in the Oklahoma City area." path="/classes" />
-      <PageHero eyebrow="Learn at your pace" title="Free carving groups and paid classes—all in one place." intro="Start with a friendly weekly carve-in or deepen your skills through an instructor-led class. Beginners and experienced carvers are welcome." image={{ src: '/images/club-17.webp', alt: 'Carving knives, chisels, a saw, and wood shavings arranged on a workbench' }} />
+      <PageHero eyebrow="Learn at your pace" title="Free carving groups* and paid classes." intro="Start with a friendly weekly carve-in or deepen your skills through an instructor-led class. Beginners and experienced carvers are welcome." image={{ src: '/images/club-17.webp', alt: 'Carving knives, chisels, a saw, and wood shavings arranged on a workbench' }} />
 
       <section className="section" id="free-groups">
         <div className="container">
-          <SectionHeading eyebrow="Always welcoming" title="Free weekly carving groups" intro="Carve-ins are informal gatherings where people work on their own projects, share ideas, and help newer carvers. Schedules can change, so contact the facility before your first visit." />
+          <SectionHeading eyebrow="Always welcoming" title="Free weekly carving groups*" intro="Carve-ins are informal gatherings where people work on their own projects, share ideas, and help newer carvers." />
+          <aside className="group-access-note" aria-label="Important information about carving group fees, ages, and schedules">
+            <strong>*What “free” means</strong>
+            <div>
+              <p>The carving groups do not charge class tuition, but some host facilities may require a membership fee or have age restrictions. The Saturday group at Woodcraft is free and open to all ages. Every group leader is a volunteer, so please call the listed group contact before your first visit to confirm that someone will be there.</p>
+              <p className="minor-safety-note"><strong>All minors must be accompanied by a parent or legal guardian.</strong></p>
+            </div>
+            <a className="button button--small" href={site.phoneHref}><PhoneIcon /> Call the club</a>
+          </aside>
           <div className="location-grid">
             {freeGroups.map((group) => (
               <article className="location-card" key={group.name}>
                 <div className="location-card__icon"><PinIcon /></div>
                 <h3>{group.name}</h3>
+                {'access' in group && group.access && <span className="access-chip">{group.access}</span>}
                 <p className="location-card__schedule">{group.schedule}</p>
                 <p>{group.address}</p>
                 <p className="small-text">{group.note}</p>
-                <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(group.address)}`} target="_blank" rel="noopener noreferrer">View map <ArrowIcon /></a>
+                <div className="location-card__actions">
+                  <a href={group.phoneHref} aria-label={`Call ${group.contact} at ${group.phoneDisplay} about the ${group.name} carving group`}><PhoneIcon /> Call {group.contact}: {group.phoneDisplay}</a>
+                  <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(group.address)}`} target="_blank" rel="noopener noreferrer">View map <ArrowIcon /></a>
+                </div>
               </article>
             ))}
           </div>
