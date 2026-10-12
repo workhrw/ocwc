@@ -17,7 +17,7 @@ export const site = {
   showRules2026: 'https://drive.google.com/file/d/19d8h3ZTeRkEfzExfoW4mp-z5-hL5xISU/view',
   bylawsUrl: 'https://drive.google.com/file/d/12qt_D8R8TBiZk4Sau1j0XexoaXZ2erAb/view',
   // Replace these values when the remaining public campaign/form URLs are available.
-  zeffyMembershipUrl: 'https://www.zeffy.com/en-US/ticketing/oklahoma-city-woodcarvers-club-memberships',
+  zeffyMembershipUrl: 'https://www.zeffy.com/en-US/ticketing/2027-oklahoma-city-woodcarvers-club-memberships',
   zeffyVendor2027Url: '',
   zeffyVolunteer2027Url: '',
   emailOctopusFormId: '17a8e89e-b11e-11f1-af2a-518b29e5e663',
@@ -116,6 +116,7 @@ type Newsletter = { month: string; url: string; size: string }
 
 export const newsletters: Record<string, Newsletter[]> = {
   '2026': [
+    { month: 'October', url: 'https://drive.google.com/file/d/1m0LsGFKCJZ5dxDMRTVUm7ET4RLAE6M_m/view?usp=drive_link', size: '602 KB' },
     { month: 'September', url: 'https://drive.google.com/file/d/1SGhwQnVjS78a1skCFn040LXlt8BCAXss/view', size: '1.0 MB' },
     { month: 'August', url: 'https://drive.google.com/file/d/1rN86vMWChdga4aMueC18taRLVHa0dBgD/view', size: '650 KB' },
     { month: 'July', url: 'https://drive.google.com/file/d/10w7Fq_yi2P5hOhgRtWRW_kN8uauobYiH/view', size: '1.2 MB' },

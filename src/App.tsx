@@ -392,7 +392,7 @@ function ClassesPage() {
                 <p>{group.address}</p>
                 <p className="small-text">{group.note}</p>
                 <div className="location-card__actions">
-                  <a href={group.phoneHref} aria-label={`Call ${group.contact} at ${group.phoneDisplay} about the ${group.name} carving group`}><PhoneIcon /> Call {group.contact}: {group.phoneDisplay}</a>
+                  <a href={group.phoneHref} aria-label={`Call ${group.contact} about the ${group.name} carving group`}><PhoneIcon /> Call {group.contact}</a>
                   <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(group.address)}`} target="_blank" rel="noopener noreferrer">View map <ArrowIcon /></a>
                 </div>
               </article>
