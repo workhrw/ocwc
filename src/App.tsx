@@ -7,6 +7,8 @@ import {
   Routes,
   useLocation,
 } from 'react-router-dom'
+import ContactForm from './ContactForm'
+import { judgingRules2026, judgingCategories2026 } from './judging'
 import { classInterests, freeGroups, navigation, newsletterFolderArchives, newsletters, site } from './data'
 
 const newsletterYears = Object.keys(newsletters).sort((yearA, yearB) => Number(yearB) - Number(yearA))
@@ -522,16 +524,22 @@ function ArtistryPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container archive-panel">
-          <div>
-            <p className="eyebrow">Previous show information</p>
-            <h2>2026 documents</h2>
-            <p>These documents are preserved for historical reference. They are not the rules or application for the 2027 show.</p>
-          </div>
+      <section className="section section--tint" id="judging-2026" aria-labelledby="judging-title">
+        <div className="container judging-content">
+          <p className="eyebrow">2026 show information</p>
+          <h2 id="judging-title">Woodcarving judging rules and categories</h2>
+          <p>These rules and categories apply to the 2026 show. Updated February 2026.</p>
+          <h3>Rules</h3>
+          <ul className="judging-rules">
+            {judgingRules2026.map((rule) => <li key={rule}>{rule}</li>)}
+          </ul>
+          <h3>2026 categories</h3>
+          <ol className="judging-categories">
+            {judgingCategories2026.map(([name, description]) => <li key={name}><strong>{name}:</strong> {description}</li>)}
+          </ol>
           <div className="document-links">
             <a href={site.showApplication2026} target="_blank" rel="noopener noreferrer">2026 show application <span>PDF</span></a>
-            <a href={site.showRules2026} target="_blank" rel="noopener noreferrer">2026 judging rules and categories <span>PDF</span></a>
+            <a href={site.showRules2026} target="_blank" rel="noopener noreferrer">2026 rules PDF reference <span>PDF</span></a>
           </div>
         </div>
       </section>
@@ -675,13 +683,14 @@ function ContactPage() {
   return (
     <>
       <Seo title="Contact" description="Contact the Oklahoma City Woodcarvers Club and plan a visit to a monthly meeting." path="/contact" />
-      <PageHero eyebrow="We would love to meet you" title="Contact the club" intro="Questions about meetings, classes, membership, demonstrations, or Artistry in Wood? Call us or visit our public Facebook group." />
+      <PageHero eyebrow="We would love to meet you" title="Contact the club" intro="Questions about meetings, classes, membership, demonstrations, or Artistry in Wood? Send a message, call us, or visit our public Facebook group." />
       <section className="section">
         <div className="container contact-grid">
           <article className="contact-card"><PhoneIcon /><h2>Call the club</h2><a href={site.phoneHref}>{site.phoneDisplay}</a><p>The number spells 572-228-OCWC.</p></article>
           <article className="contact-card"><CalendarIcon /><h2>Visit a meeting</h2><p>{site.meetingSchedule}</p><a href={site.mapUrl} target="_blank" rel="noopener noreferrer">Get directions <ArrowIcon /></a></article>
           <article className="contact-card"><span className="contact-card__f" aria-hidden="true">f</span><h2>Facebook</h2><p>Follow club conversation and announcements.</p><a href={site.facebookUrl} target="_blank" rel="noopener noreferrer">Open the OCWC Facebook group <ArrowIcon /></a></article>
         </div>
+        <ContactForm />
         <div className="container narrow contact-location">
           <p className="eyebrow">Meeting location</p>
           <h2>{site.meetingVenue}</h2>
@@ -706,6 +715,8 @@ function PrivacyPage() {
         <p>The club calendar is displayed through Google Calendar. Newsletters and some historical documents open from Google Drive. Google may receive standard technical information when those services load.</p>
         <h2>What this website stores</h2>
         <p>The first release does not include website accounts, a member directory, custom payment processing, advertising pixels, or a website database. It does not intentionally store membership, payment, class, vendor, or volunteer submissions.</p>
+        <h2>Contact messages</h2>
+        <p>The contact form sends your name, email address, and message through Google Apps Script to the club’s private Google Sheet so we can respond. Contact messages remain in that Sheet until the club deletes them; access is limited to authorized club users. A hidden field helps filter automated submissions; it does not block every bot. You can also email or call the club.</p>
         <h2>Email choices</h2>
         <p>Newsletter emails will include an unsubscribe option managed by EmailOctopus.</p>
         <h2>Questions</h2>

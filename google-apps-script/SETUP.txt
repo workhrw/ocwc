@@ -1,0 +1,115 @@
+OCWC TEST WEBSITE: NUMBERED SETUP AND UPLOAD GUIDE
+================================================
+Honey uploads and authorizes the backend. Nothing has been deployed by Codex.
+Use test.okcarver.com ONLY. No live, DNS, redirect or Google Site changes now.
+
+FILES
+Website ZIP: built public website, .htaccess and contact-config.json at ZIP root.
+Setup ZIP: Code.gs, appsscript.json, SETUP.txt and validation report.
+Keep setup files outside the public web root. Do not upload them to cPanel.
+The public ZIP has no credentials, private Sheet ID, PHP or mail server code.
+
+FIRST UPLOAD AND CHECK THE TEST WEBSITE
+1. In cPanel > Domains, confirm test.okcarver.com's exact document root.
+   Do not assume public_html or select the live okcarver.com/okcarver.org root.
+2. In File Manager, show hidden files and back up the test root with
+   Compress/Download. Keep the backup outside public web space.
+3. Upload/extract the WEBSITE ZIP into a temporary folder to inspect it.
+   Copy its contents into the confirmed test root: index.html must be directly
+   there, not nested under dist/ or the ZIP's filename. Replace only matching
+   website paths. Preserve cgi-bin and all unrelated files/directories.
+   Compare .htaccess before replacing; retain hosting-specific directives.
+   Have conflicting rules reviewed first. Do not delete old assets blindly.
+4. Check /, /membership, /newsletters, /classes, /artistry-in-wood and /contact
+   on https://test.okcarver.com, including a phone screen. Confirm 2027 Zeffy,
+   October current issue, seven Call links, seven rules and 28 categories.
+   Contact remains disabled until you configure its endpoint. Email/phone links
+   continue working. This is intentional and does not mean a message was sent.
+
+CREATE A PRIVATE GOOGLE SHEET
+5. Sign into Drive as woodcarvingokc@gmail.com. Create a NEW Sheet named
+   OCWC Website Contact Messages in the club's chosen Drive folder.
+   Leave Share > General access set to Restricted. Share only with club people
+   who need the messages. Do not publish the Sheet or make it publicly readable.
+6. In the Sheet select Extensions > Apps Script. Name the project OCWC Contact.
+   Paste this package's Code.gs into the editor's Code.gs.
+   In CONFIG replace PASTE_YOUR_PRIVATE_SHEET_ID_HERE with the Sheet URL's part
+   between /d/ and /edit. Keep Contact messages as tabName and
+   https://test.okcarver.com/contact as websiteUrl. Save.
+7. Open Apps Script Project Settings (gear), show appsscript.json in the editor,
+   and replace that manifest with this package's appsscript.json.
+   It requests only the Sheets scope. Google's scope grants Sheets access beyond
+   one file; this code uses only the configured Sheet. No Gmail, Drive-wide,
+   contacts or external-fetch permission is requested.
+8. Select setupContactSheet in the function selector and click Run.
+   Review Google's authorization request as the club account and approve only
+   the Sheets access matching this script. It creates the Contact messages tab
+   and headers without overwriting another tab.
+   If authorization is blocked, Anyone access is unavailable, or an
+   unverified-app/security warning appears, STOP and have the account owner/admin
+   resolve it through Google's supported process. Do not bypass browser security
+   warnings or grant unrelated access.
+
+DEPLOY THE GOOGLE BACKEND AND ENABLE THE FORM
+9. In Apps Script choose Deploy > New deployment > Web app.
+   Execute as: Me (the club account). Who has access: Anyone, if offered.
+   Honey performs this public-endpoint deployment and associated authorization.
+   The Sheet remains Restricted. Visitors may submit, but this code never returns
+   stored messages or the Sheet ID. If account policy disallows anonymous public
+   web apps, stop; a club-only endpoint cannot serve this public website.
+10. Copy the web-app URL ending /exec, not the editor-only /dev test URL.
+    In cPanel edit ONLY contact-config.json in the TEST document root:
+    {
+      "endpoint": "PASTE_THE_REAL_SCRIPT_GOOGLE_COM_EXEC_URL_HERE"
+    }
+    Keep valid JSON with quotes. Required shape:
+    https://script.google.com/macros/s/DEPLOYMENT_ID/exec
+    No rebuild is needed. Keep a private copy of this configured file: the blank
+    contact-config.json in a later ZIP would disable the form if overwritten.
+11. Reload /contact. If disabled, check JSON and exact endpoint URL.
+    Submit synthetic name "OCWC TEST - DELETE", the tester's email, and message
+    "Synthetic setup test; no real visitor data."
+    A normal HTML POST opens Google's result page in a new tab. There is no
+    opaque/no-cors fetch and the website never assumes the save succeeded.
+    Check for "Message saved", then independently verify a matching row in
+    the PRIVATE Sheet. Repeat signed out/incognito and on a phone.
+    An access, quota or platform error is NOT success. If Google setup fails,
+    empty the endpoint value to disable the form until resolved.
+12. Check empty fields and invalid email errors. A technical tester can also
+    remove browser validation or fill confirmation_code locally: the backend
+    should say "Message not saved" and add no row. Use only synthetic data.
+    The honeypot is optional, hidden from keyboard/screen readers, and requests
+    no autofill; it filters simple bots, not all automation.
+    Remove only synthetic rows when finished.
+13. Check the Sheet regularly. No automatic email notifications are implemented,
+    no Gmail permission is requested, and no email delivery has been tested.
+    The fallback email link is woodcarvingokc@gmail.com. Adding notifications
+    later requires a separate review and may require send-mail permission.
+
+WHAT WAS TESTED / WHAT REMAINS
+Local tests cover input validation, honeypot rejection, formula-safe cells,
+lock contention, setup/header errors and storage failures. Browser tests intercept
+synthetic submissions; they do not contact Google or store real visitor data.
+Google authorization, live Sheet persistence, anonymous access, platform errors
+and quotas still require step 11. A valid-looking endpoint only enables the UI;
+it does not prove deployment or permissions.
+The script does not log message contents. Google service policies/platform logs
+still apply. Messages persist in the private Sheet until the club deletes them;
+limit access and choose a retention period.
+On uncertain write/flush failure, the response says "Could not confirm your
+message" instead of claiming success. There is no PHP, SMTP or paid processor.
+
+UPDATES / ROLLBACK / LATER LIVE MOVE
+For code changes, Apps Script > Deploy > Manage deployments > edit the existing
+deployment > new version > Deploy, retaining its /exec URL.
+To roll back the website, restore only affected paths in the test root from
+the backup, including its previous .htaccess if changed. Preserve unrelated files.
+After test works, separately inspect the actual live hosting, Google Site and
+redirect settings; plan backup/rollback before authorizing a live move.
+Preserve email DNS. No live/DNS/redirect changes are included in this delivery.
+
+OFFICIAL REFERENCES CHECKED
+https://developers.google.com/apps-script/guides/web
+https://developers.google.com/apps-script/guides/services/authorization
+https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app#openById(String)
+https://developers.google.com/apps-script/guides/html/restrictions

@@ -66,3 +66,25 @@ Newsletter issues are stored in the `newsletters` object in `src/data.ts`. Event
 If a production problem appears, restore the backed-up document-root files in cPanel. Source history remains available in GitHub.
 
 Every push to `main` and every pull request also runs a free GitHub Actions production-build check. A green “Build website” check means the TypeScript source compiles and Vite can create the deployable site.
+
+## Contact form and test-only handoff
+
+The Contact page submits a standard HTML form to an owner-deployed Google Apps
+Script web app. Backend source and the numbered setup guide are in
+`google-apps-script/Code.gs`, `google-apps-script/appsscript.json`, and
+`google-apps-script/SETUP.txt`. Keep those files out of the public web root.
+
+The deployed form saves name, email and message in the club's private Google
+Sheet. It has no PHP backend, database, SMTP credentials or email notifications.
+The sheet ID stays in the private script. `public/contact-config.json` has a
+blank endpoint by design: the UI stays disabled until the owner deploys and
+authorizes the script and enters its real `/exec` URL. The built copy at
+`dist/contact-config.json` can be configured without rebuilding.
+
+Run `npm test` for local backend validation, honeypot, formula-injection, and
+failure-path tests. These tests stub Google services and do not prove live Sheet
+access. Complete the synthetic live check in SETUP.txt after owner deployment.
+
+For this handoff upload only the website ZIP to the confirmed
+`test.okcarver.com` document root. Preserve unrelated files and `cgi-bin`.
+Do not apply the production deployment checklist above to the live sites.

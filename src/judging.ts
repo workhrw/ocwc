@@ -1,0 +1,42 @@
+// Transcribed from Honey's October 11 participant-email PDF.
+// Library: libfile_0edd7c8d83cc819184a74803e1f69afe; source updated February 2026.
+export const judgingRules2026 = [
+  'Each exhibitor is limited to one (1) entry per category - that has been completed this year.',
+  'Any item winning a BLUE ribbon in any previous OCWC Show is not eligible.',
+  'If there is only 1 entry in the category, a ribbon will be awarded based on the judging manual’s point system.',
+  'Additional credit may be given for originality.',
+  'If using a roughout, reference the creator, if known.',
+  'All decisions by the judging committee are final.',
+  'If a large number of carvings are entered in a single category, it could be divided into separate categories at the discretion of the judging teams.',
+]
+
+export const judgingCategories2026 = [
+  ['Birds (Not Waterfowl)', 'single, any finish.'],
+  ['Birds: (Waterfowl)', '(i.e., shore birds, wading birds, swimming birds, decoys) single, any finish.'],
+  ['Caricature Animal', 'single species, any finish.'],
+  ['Caricature Group', 'any finish.'],
+  ['Caricature Human', 'single figure, any finish.'],
+  ['Carousel & Mythical Figures', 'Single or group any finish.'],
+  ['Carved Walking Sticks & Canes', 'Any walking stick and cane will be in this category, any finish.'],
+  ['Chip Carving', 'flat, three-dimensional, gouge – any subject, any finish.'],
+  ['Decorative Functional', 'any carved subject, any finish with a specific function or use (spoons, bottle stoppers, etc.).'],
+  ['Floral', 'any finish.'],
+  ['Gourds', 'Wood-burned, carved, any style, any finish.'],
+  ['Holiday (Santas)', 'any finish'],
+  ['Holiday', "any finish (secular holidays such as Valentine's, Halloween, Thanksgiving, Christmas, etc.)"],
+  ['Instructor-assisted/Seminar Carving', 'carvings created in an in-person or online class or seminar. (it doesn’t matter if the instructor touched the piece or not.)'],
+  ['Novice Carvers (17 and older)', 'OCWC welcomes those who have been carving for less than 2 years.'],
+  ['Marine Life', 'any finish.'],
+  ['Miniature', 'must not exceed 2" x 2" x 2", any finish. (including base)'],
+  ['Miscellaneous', 'This category is for your most imaginative and creative works.'],
+  ['Pyrography', 'Non-carved item, any subject, any finish.'],
+  ['Realistic Animal', 'single, any finish.'],
+  ['Realistic Group Subject', 'two or more figures, any species, any finish.'],
+  ['Realistic Human', 'single, any finish'],
+  ['Relief (High)', 'High relief, natural or painted. (includes any undercutting)'],
+  ['Relief (Low)', 'Low relief natural or painted.'],
+  ['Religious', 'any finish (may represent any religious philosophy).'],
+  ['Stylized', 'any subject, natural finish, grain must show.'],
+  ['Unusual Woods (includes cypress knees, cottonwood bark, and driftwood, which must be an integral element)', 'any subject, any finish.'],
+  ['Youth Carvers', '16 and under. (Could be separated into categories if a large number of entries are made.)'],
+]

@@ -1662,3 +1662,31 @@ p {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Judging text and the club contact form */
+.judging-content { max-width: 1000px; }
+.judging-rules, .judging-categories { padding-left: 1.6rem; }
+.judging-rules li, .judging-categories li { padding-left: .4rem; margin-bottom: 1rem; }
+.judging-categories { columns: 2; column-gap: 3rem; }
+.judging-categories li { break-inside: avoid; }
+.judging-content .document-links { margin-top: 2rem; }
+.contact-form-section { margin-top: 4rem; }
+.contact-form-section a { overflow-wrap: anywhere; }
+.contact-fields { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: .75rem; }
+.contact-fields label { font-weight: 700; margin-top: .75rem; }
+.contact-fields input, .contact-fields textarea {
+  width: 100%; min-width: 0; padding: .8rem 1rem; border: 1px solid var(--muted);
+  border-radius: 8px; font: inherit; color: var(--ink); background: var(--white);
+}
+.contact-fields textarea { resize: vertical; }
+.contact-fields input:focus-visible, .contact-fields textarea:focus-visible, .contact-result:focus-visible {
+  outline: 4px solid #68bde8; outline-offset: 3px;
+}
+.contact-fields [aria-invalid="true"] { border: 2px solid #9c2424; }
+.contact-fields .button { margin-top: 1rem; justify-self: start; }
+.contact-fields:disabled { opacity: .65; }
+.contact-fields button:disabled { cursor: not-allowed; }
+.contact-result:not(:empty) { padding: 1rem; margin: 1rem 0; border-left: 4px solid var(--forest); background: var(--forest-light); }
+.field-error { color: #9c2424; margin: 0; }
+.contact-fields legend.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 700px) { .judging-categories { columns: 1; } }
