@@ -411,15 +411,18 @@ function ClassesPage() {
         <div className="container class-layout">
           <div>
             <SectionHeading eyebrow="Learn from an instructor" title="Paid classes" intro="Class dates, prices, projects, and registration links are published when an instructor and enough participants are confirmed. Zeffy will handle secure registration and payment." />
-            <div className="empty-state">
-              <span className="empty-state__mark" aria-hidden="true">✦</span>
-              <h3>No paid class is currently open for registration</h3>
-              <p>Watch the club calendar and newsletter for the next class announcement. Registration will appear here as soon as details are final.</p>
+            <article className="empty-state" aria-labelledby="roger-stegall-class">
+              <p className="eyebrow">Caricature carving</p>
+              <h3 id="roger-stegall-class">Roger Stegall carving class</h3>
+              <p><strong>November 12, 13, and 14</strong><br />9:00 a.m. to 5:00 p.m.</p>
+              <p><strong>Location:</strong> H &amp; H Shooting Sports</p>
+              <p><strong>Members:</strong> $220 · <strong>Non-members:</strong> $245<br />Roughouts cost extra.</p>
               <div className="button-row">
-                <Link className="button button--small" to="/membership#calendar">View calendar</Link>
+                <a href="https://www.zeffy.com/en-US/ticketing/annual-gala-8553" className="button button--small" target="_blank" rel="noopener noreferrer">Register for Roger Stegall’s class <ArrowIcon /></a>
+                <Link className="button button--outline button--small" to="/membership#calendar">View calendar</Link>
                 <Link to="/newsletters#newsletter-signup" className="button button--outline button--small">Get class announcements</Link>
               </div>
-            </div>
+            </article>
           </div>
           <aside className="interest-panel">
             <h3>Classes may include</h3>
